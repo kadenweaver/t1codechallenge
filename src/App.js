@@ -13,7 +13,7 @@ const DEFAULT_QUERY = '/users';
 class App extends Component {
     state = {
         text: 'Hello World',
-        count: 0,
+        count: 0
       
     }
 
