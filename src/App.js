@@ -14,7 +14,7 @@ class App extends Component {
     state = {
         text: 'Hello World',
         count: 0,
-        email : ""
+        emaillist : []
     }
 
     onClick = () => {
@@ -32,8 +32,10 @@ class App extends Component {
     return fetch(API+DEFAULT_QUERY)
       .then((response) => response.json())
       .then((responseJson) => {
-        
-        this.setState({email: responseJson[0].email});
+        let templist = responseJson.map((user)=>
+            <li key = {user.id}>{user.email}</li>
+        );
+        this.setState({emaillist: templist})
       })
       .catch((error) => {
         console.error(error);
@@ -48,7 +50,7 @@ class App extends Component {
         <button onClick={this.onClick}>Change Text</button>
         <div></div>
         <button onClick={this.makeFetch}>Import Data</button>
-        <p>{this.state.email}</p>
+        <ul>{this.state.emaillist}</ul>
       </div>
     );
   }
