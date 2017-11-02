@@ -13,8 +13,8 @@ const DEFAULT_QUERY = '/users';
 class App extends Component {
     state = {
         text: 'Hello World',
-        count: 0
-      
+        count: 0,
+        email : ""
     }
 
     onClick = () => {
@@ -28,11 +28,12 @@ class App extends Component {
         
     }
     
-    makeFetch() {
+    makeFetch = () =>{
     return fetch(API+DEFAULT_QUERY)
       .then((response) => response.json())
       .then((responseJson) => {
-        alert(responseJson[0]);
+        
+        this.setState({email: responseJson[0].email});
       })
       .catch((error) => {
         console.error(error);
@@ -47,6 +48,7 @@ class App extends Component {
         <button onClick={this.onClick}>Change Text</button>
         <div></div>
         <button onClick={this.makeFetch}>Import Data</button>
+        <p>{this.state.email}</p>
       </div>
     );
   }
